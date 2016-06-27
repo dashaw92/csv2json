@@ -53,7 +53,12 @@ public class Main {
 			String[] current = content.get(i).trim().split(",");
 			for(int index : definedVals.keySet()) {
 				//index works for definedVals.get(int) and current[int]
-				String value = current[index].trim();
+				String value;
+				try {
+					value = current[index].trim();
+				} catch(ArrayIndexOutOfBoundsException e) {
+					value = "";
+				}
 				obj.putValue(definedVals.get(index), value);
 			}
 			objects.add(obj);
